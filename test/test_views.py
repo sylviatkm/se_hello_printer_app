@@ -10,7 +10,7 @@ class FlaskrTestCase(unittest.TestCase):
 
     def test_outputs(self):
         rv = self.app.get('/outputs')
-        ','.join(SUPPORTED) in rv.data
+        ', '.join(SUPPORTED) in rv.data
 
     def test_msg_with_output(self):
         rv = self.app.get('/?output=json')
