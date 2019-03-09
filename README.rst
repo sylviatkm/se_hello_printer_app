@@ -77,7 +77,12 @@ Pomocnicze
     yum install -y docker-ce
     systemctl start docker
 
+Dodaj Badge z TravisCI:
+.. image:: https://travis-ci.org/sylviatkm/se_hello_printer_app.svg?branch=master
+    :target: https://travis-ci.org/sylviatkm/se_hello_printer_app
+
 Materiały
 =========
 
 - https://virtualenvwrapper.readthedocs.io/en/latest/
+
