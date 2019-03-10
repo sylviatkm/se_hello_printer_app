@@ -1,19 +1,25 @@
 pipeline {
     agent any
     stages {
-        stage('Linter') {
+        stage('Deps') {
             steps {
-	            sh 'make lint'
+	            sh 'make deps'
         	}
         }
-        stage('Deps'){
+        stage('Linter'){
            steps {
-                   sh 'make deps'
+                   sh 'make lint'
               }
         }
         stage('Test'){
             steps {
-                   sh 'make test'
+                   sh 'make test_xunit || true'
+                   step([$class: 'XUnitBuilder',
+                       thresholds: [
+                            [$class: 'SkippedThreshold', failureThreshold: '0'],
+                            [$class: 'FailedThreshold', failureThreshold: '1']],
+                            tools: [[$class: 'JUnitType', pattern: 'test_results.xml']]])
+                    
               }
         }
     }
