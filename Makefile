@@ -6,6 +6,11 @@ lint:
 	flake8 hello_world
 test:
 	PYTHONPATH=. py.test  --verbose -s
+test_cov:
+	PYTHONPATH=. py.test --verbose -s --cov=. --cov-report xml
+test_xunit:
+		PYTHONPATH=. py.test --verbose -s --cov=. --cov-report xml --junit-xml=test_results.xml
+
 docker_build:
 	docker build -t hello-world-printer .
 docker_run: docker_build
